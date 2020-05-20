@@ -1,0 +1,28 @@
+
+
+.image {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    /* align-items:center; */
+}
+
+
+
+.fill {
+    object-fit: cover;  
+    min-width: 100%;
+    min-height: calc(100% - 50px);
+}
+
+.image > .mat-chip {
+    margin-top: 8px;
+    min-height: 50px;
+  }
+
+
+  .dropdown {
+    position: relative;
+  }
