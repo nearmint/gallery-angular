@@ -19,7 +19,7 @@ export class CategoryComponent implements OnInit {
   }
 
   editCategory(event, category) {
-event.path[1].style.display = 'none';dsds
+event.path[1].style.display = 'none';
 document.getElementById(`${category}2`).style.display = 'inline'; 
   }
 
