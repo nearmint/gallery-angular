@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageCollection } from '../image-collection.service';
 import { MatDivider } from '@angular/material';
+import * as uuid from 'uuid';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-category',
@@ -11,6 +13,7 @@ export class CategoryComponent implements OnInit {
   uniqueId: number = this.imageCollection.uniqueId;
   addCategoryValue: string;
   categories: any[] = [];
+  categoryOpen: number;
 
   constructor(private imageCollection: ImageCollection) { }
 
@@ -18,16 +21,14 @@ export class CategoryComponent implements OnInit {
     this.categories = this.imageCollection.categories;
   }
 
-  editCategory(event, category) {
-event.path[1].style.display = 'none';
-document.getElementById(`${category}2`).style.display = 'inline'; 
+  editCategory(index) {
+this.categoryOpen = index;
+
   }
 
   saveCategory(event, category, i) {
-    event.path[1].style.display = 'none';
-    document.getElementById(`${category}1`).style.display = 'inline'; 
-    this.categories[i] = (<HTMLInputElement>document.getElementById(`${category}2-2`)).value;
     localStorage.setItem("categories", JSON.stringify(this.categories));
+    this.categoryOpen = -5;
   }
 
   deleteCategory(i) {
@@ -40,6 +41,7 @@ document.getElementById(`${category}2`).style.display = 'inline';
     localStorage.setItem("categories", JSON.stringify(this.categories));
     this.uniqueId++;
     localStorage.setItem("uniqueId", JSON.stringify(this.uniqueId))
+    console.log(this.uniqueId);
   }
 
 }

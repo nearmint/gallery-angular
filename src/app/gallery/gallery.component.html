@@ -19,14 +19,14 @@
 <h4>Kategorien:</h4>
 
   <div *ngFor="let category of categories; let i = index">
-    <input type="checkbox" id="category{{i}}" name="{{category[0]}}" value="{{category[0]}}" (click)="addCategoryToImage(i)">
+    <input type="checkbox" id="category{{i}}" name="{{category[0]}}" value="{{category[0]}}" (change)="addCategoryToImage(i, $event)">
     <label for="category{{i}}">{{category[0]}}</label>
     </div>
 
 
 
 
-  <button type="button" value="Add" class="btn btn-primary" (click)="addImage()">Submit</button>
+  <button type="button" value="Add" class="btn btn-primary" (click)="addImage()" type="reset">Submit</button>
 </form>
 
 <br/><br/>

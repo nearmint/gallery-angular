@@ -1,8 +1,9 @@
 <h3>Aktive Kategorien:</h3>
 <div *ngFor="let category of categories; let i = index">
-    <div id="{{category[0]}}1">{{ category[0] }} <button (click)='editCategory($event, category[0])'>Edit</button><button (click)="deleteCategory(i)">Delete</button></div>
+    <div id="{{category[0]}}1" [ngStyle]="{'display':categoryOpen !== i ? 'inline' : 'none'}">{{ category[0] }} <button (click)='editCategory(i)'>Edit</button>
+        <button (click)="deleteCategory(i)">Delete</button></div>
     
-    <div id="{{category[0]}}2" style='display: none;'><input type='text' value='{{category[0]}}' id="{{category[0]}}2-2"><button (click)="saveCategory($event, category[0], i)">OK</button></div>
+    <div id="{{category[0]}}2" [ngStyle]="{'display':categoryOpen === i ? 'inline' : 'none'}"><input type='text' value='{{category[0]}}' id="{{category[0]}}2-2" [(ngModel)]="category[0]"><button (click)="saveCategory($event, category[0], i)" >OK</button></div>
     
     <!-- <div class='edit'>Edit</div> -->
 </div>

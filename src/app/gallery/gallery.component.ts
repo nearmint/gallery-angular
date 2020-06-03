@@ -14,13 +14,9 @@ export class GalleryComponent implements OnInit {
 
   addCategory: boolean[] = [];
 
-  addCategoryToImage(index) {
-    if(this.addCategory[index] === true) {
-      this.addCategory[index] = false;
-    }
-    else {
-    this.addCategory[index] = true;
-    }
+  addCategoryToImage(index, ev) {
+    console.log('addCategory', index, ev.target.checked);
+    this.addCategory[index] = ev.target.checked;
 
   }
 
@@ -32,6 +28,7 @@ export class GalleryComponent implements OnInit {
 
   resetFilter() {
     this.showImages = this.imageCollection.images;
+    console.log(this.showImages);
   }
  
 
@@ -59,29 +56,6 @@ export class GalleryComponent implements OnInit {
  
  }
  this.bild = new Bild();
-
-  // for (let i = 0; i < this.images.length; i+=6) {
-  //   let repeat = Math.floor(this.images.length/6);
-  //   console.log(repeat);
-  //   if (i === repeat) {
-  //     let str = "this.newImages.push([";
-  //     for(let e=(repeat*6); e < (this.images.length % 6); e++) {
-  //       str += `this.images[${e}],`;
-  //       console.log(str);
-  //     }
-
-  //     str += "]);";
-  //   eval(str);
-  //   console.log(this.newImages);
-  //   }
-  //   else {
-  //   this.newImages.push([this.images[i],this.images[i+1],this.images[i+2],this.images[i+3],this.images[i+4],this.images[i+5]]);
-  //   }
-  // }
-
-  // console.log(this.newImages);
-  // console.log(this.newImages[this.page-1]);
-
   }
 
   emptyString = "";
@@ -104,8 +78,6 @@ export class GalleryComponent implements OnInit {
   }
 
   addImage() {
-    //let el = <HTMLInputElement> document.getElementById("exampleCheck1");
-    //this.bild = new Bild(`${(<HTMLInputElement>document.getElementById("link")).value}`,`${(<HTMLInputElement>document.getElementById("beschreibung")).value}`,el.checked)
     console.log(this.addCategory);
     this.bild.category = [];
     for(let e = 0; e < this.addCategory.length; e++) {
@@ -118,34 +90,14 @@ export class GalleryComponent implements OnInit {
    
     this.images.push(this.bild);
     console.log(this.bild);
-    //this.emptyString = null;
     this.bild = new Bild();
   
     this.formShow = !this.formShow;
     this.newImages = [];
-    // for (let i = 0; i < this.images.length; i+=6) {
-    //   let repeat = Math.floor(this.images.length/6);
-    //   console.log(repeat);
-    //   if (i/6 === repeat) {
-    //     let str = "this.newImages.push([";
-    //     for(let e=(repeat*6); e < ((repeat*6)+(this.images.length % 6)); e++) {
-    //       str += `this.images[${e}],`;
-    //       console.log(str);
-    //     }
-  
-    //     str += "]);";
-    //   eval(str);
-    //   console.log(this.newImages);
-    //   }
-    //   else {
-    //   this.newImages.push([this.images[i],this.images[i+1],this.images[i+2],this.images[i+3],this.images[i+4],this.images[i+5]]);
-    //     console.log(this.newImages);
-    // }
-    // }
-
     localStorage.setItem("photos", JSON.stringify(this.images));
     console.log(this.images.length);
     this.addCategory = [];
+
   }
 
   ngOnInit() {
@@ -158,6 +110,5 @@ export class GalleryComponent implements OnInit {
 
   newImages = [];
 
-//  images = ['https://images.freeimages.com/images/large-previews/851/poppies-1369329.jpg', 'https://images.freeimages.com/images/large-previews/9f7/wanna-beer-1056482.jpg', 'https://images.freeimages.com/images/large-previews/cd8/bright-red-sunset-1446856.jpg', 'https://images.freeimages.com/images/large-previews/456/skyscraper-1-1523706.jpg'];
 
 }
